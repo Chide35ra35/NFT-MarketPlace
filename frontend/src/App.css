@@ -1,0 +1,78 @@
+/* Webpixels CSS */
+/* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
+/* URL: https://github.com/webpixels/css */
+
+@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+
+/* Bootstrap Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+body{
+    background-color: black;
+}
+.main-navbar{
+    background-color: black!important;
+}
+.main-navbar a{
+    color: white !important;
+}
+.dropdown-menu{
+    background-color: navy ;
+}
+.dropdown-item:hover{
+color: navy !important;
+}
+.navbar-toggler-icon{
+    background-color: white !important;
+}
+.carousel-item img{
+    height: 40rem;
+}
+.main-card{
+    margin-bottom: 1rem;
+    background-color: rgb(18, 17, 17);
+    color: black;
+}
+.main-card img{
+height: 15rem;
+}
+.form{
+    max-width: 500px;
+    margin: auto;
+}
+.hero-section {
+    position: relative;
+}
+.hero-section img{
+    width: 100%;
+    height: 35rem;
+}
+.hero-section h3{
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-size: 2.5rem;
+}
+.hero-section h5{
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    font-size: 1.8rem;
+    font-family: cursive;
+    text-align: center;
+}
+.dropdown-menu{
+    background-color: black;
+}
+.dropdown-item:hover{
+    background-color: white;
+    color: black;
+}
+.dropdown-menu a{
+    color: white ;
+}
+.main-card , .card-body{
+    color: white;
+}
+
