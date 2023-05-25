@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import Header from "../components/Header"
+import http from "../http"
 
 
 
@@ -22,7 +23,7 @@ export default function LoginPage() {
         setError("Please fill all field")
         return;
     }
-    const{data} = await axios.post("http://localhost:5000/api/user/login",{email,password})
+    const{data} = await http.post("/user/login",{email,password})
     if (data.error) {
         setError(data.error)
     }

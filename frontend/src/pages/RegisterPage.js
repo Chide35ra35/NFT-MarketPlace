@@ -3,6 +3,7 @@ import Header from "../components/Header"
 import { Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 import Swal from "sweetalert2"
+import http from "../http"
 
 
 
@@ -32,7 +33,7 @@ export default function RegisterPage(){
             return;
         }
         
-        const { data } = await axios.post("http://localhost:5000/api/users/register", { email, password, username })
+        const { data } = await http.post("/users/register", { email, password, username })
         console.log(data)
         if (data.error) {
             setError(data.error)
