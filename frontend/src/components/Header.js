@@ -13,9 +13,7 @@ export default function Header(){
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/">Link</Link>
-        </li>
+    
         <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             User
@@ -27,7 +25,6 @@ export default function Header(){
             <li>
               <hr className="dropdown-divider" />
             </li>
-            <li><Link className="dropdown-item" to="/">Something else here</Link></li>
           </ul>
         </li>
         <li className="nav-item">
