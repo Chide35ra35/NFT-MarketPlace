@@ -1,19 +1,57 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import Swal from "sweetalert2";
+import axios from "axios";
+import http from "../http";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function SubmitCollectionpage() {
-    const [title,setTitle]= useState("")
-    const [image,setImage]= useState("")
-    const [price,setPrice]= useState()
-    const [description,setDescription]= useState("")
-    const [error,setError] = useState("")
+    const [title, setTitle] = useState("")
+    const [image, setImage] = useState("")
+    const [price, setPrice] = useState()
+    const [description, setDescription] = useState("")
+    const [error, setError] = useState("")
+    const navigate = useNavigate()
 
+    const userInfor = JSON.parse(localStorage.getItem("userInfor"))
 
+    async function uploadImage(e) {
+        const file = e.target.files[0];
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "Jamaica");
+        data.append("cloud_name", "jamaica");
 
-    function submitHandler(e){
+        try {
+            const result = await axios.post("https://api.cloudinary.com/v1_1/jamaica/image/upload", data)
+            Swal.fire("Image Approved, Proceed to save your NFT")
+            setImage(result.data.secure_url)
+        } catch (error) {
+            Swal.fire(error.message)
+        }
+    }
+
+    async function submitHandler(e) {
         e.preventDefault()
-        if(!title || !image || !price || !description){
-            setError ("please fill all field")
+        if (!image) {
+            setError("please add your image");
+            return;
+        }
+        if (!title || !price || !description) {
+            setError("please fill all field");
+            return;
+        }
+        const { data } = await http.post("/collections", { title, image, description, price, owner: userInfor._id })
+        if (data.error) {
+            setError(data.error);
+        }
+        if (data.success) {
+            navigate("/dashboard")
+            Swal.fire("Done", data.success, "success")
+
+
         }
     }
     return <>
@@ -43,20 +81,21 @@ export default function SubmitCollectionpage() {
                     {/* Main */}
                     <main className="p-3 bg-surface-secondary">
                         <h2 className="text-center mb-5">SUBMITCOLLECTION</h2>
-                        <form>
+                        <form onSubmit={submitHandler}>
+                            {error && <div className="alert-danger my-3 p-3">{error}</div>}
 
                             <div className="form-outline mb-2">
-                                <input onChange={e => setTitle(e.target.value)} type="email" id="form1Example1" className="form-control" />
+                                <input onChange={e => setTitle(e.target.value)} type="text" id="form1Example1" className="form-control" />
                                 <label className="form-label" htmlFor="form1Example1">Collection Title</label>
                             </div>
 
                             <div className="form-outline mb-2">
-                                <input onChange={e => setImage(e.target.value)} type="text" id="form1Example2" className="form-control" />
+                                <input onChange={uploadImage} type="file" id="form1Example2" className="form-control" accept="image/*" />
                                 <label className="form-label" htmlFor="form1Example2">Collection Avater</label>
                             </div>
 
                             <div className="form-outline mb-2">
-                                <input onChange={e => setPrice(e.target.value)} type="number" id="form1Example2" className="form-control" />
+                                <input onChange={e => setPrice(e.target.value)} type="text" id="form1Example2" className="form-control" />
                                 <label className="form-label" htmlFor="form1Example2">Collection Price</label>
                             </div>
                             <div class="form-outline mb-4">
@@ -67,7 +106,7 @@ export default function SubmitCollectionpage() {
 
 
 
-                            <button onSubmit={submitHandler} type="submit" className="btn btn-outline-primary btn-block form-control w-100">Submit Collection</button>
+                            <button type="submit" className="btn btn-outline-primary btn-block form-control w-100">Submit Collection</button>
                         </form>
 
                     </main>

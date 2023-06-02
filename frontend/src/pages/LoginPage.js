@@ -23,13 +23,14 @@ export default function LoginPage() {
         setError("Please fill all field")
         return;
     }
-    const{data} = await http.post("/user/login",{email,password})
+    const{data} = await http.post("/users/login",{email,password})
     if (data.error) {
         setError(data.error)
     }
     if (data.success) {
+        localStorage.setItem("userInfor", JSON.stringify(data.user))
         navigate("/")
-        Swal.fire("Done", data.success, "success")
+        Swal.fire("Done", data.success, "success");
     }
    }
     return <>

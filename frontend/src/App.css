@@ -75,4 +75,30 @@ height: 15rem;
 .main-card , .card-body{
     color: white;
 }
+.login-icon{
+    text-transform: capitalize;
+    background-color: aqua;
+    color: black;
+    padding: 5px 14px;
+    border-radius: 100%;
+}
+.collection-image{
+    transform: scale(2);
+   
+    border-radius: 4px !important; 
+}
+.collection-owner-image{
+    height: 5rem !important;
+    width: 5rem !important;
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    border-radius: 100%;
 
+}
+.profile-picture{
+    height: 15rem;
+    width: 15rem;
+    border-radius: 1rem;
+
+}

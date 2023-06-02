@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
 export default function Header(){
+  const userInfor = JSON.parse(localStorage.getItem("userInfor"))
+  function logout(){
+    localStorage.removeItem("userInfor");
+    // window.location.reload() 
+  }
     return<>
       <nav className="navbar main-navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
@@ -16,24 +21,27 @@ export default function Header(){
     
         <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User
+            {userInfor ? userInfor.username : "User"}
           </Link>
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" to="/login">Login</Link></li>
             <li><Link className="dropdown-item" to="/register">Register</Link></li>
-            <li><Link className="dropdown-item" to="/dashboard">dashboard</Link></li>
+            {/* <li><Link className="dropdown-item" to="/dashboard">dashboard</Link></li>? */}
+            <li  ><a onClick={logout} className="dropdown-item" href="/">Logout</a></li>
             <li>
               <hr className="dropdown-divider" />
             </li>
           </ul>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link ">Dashboard</Link>
+        {userInfor && <li className="nav-item">
+          <Link className="nav-link " to={"/dashboard"}>Dashboard</Link>
         </li>
+        }
+        
       </ul>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-outline-success" type="submit" >Search</button>
       </form>
     </div>
   </div>
