@@ -102,3 +102,10 @@ height: 15rem;
     border-radius: 1rem;
 
 }
+@media(max-width : 768px){
+    .hero-section h5{
+        top : 65%;
+        left: 2%;
+        
+    }
+}

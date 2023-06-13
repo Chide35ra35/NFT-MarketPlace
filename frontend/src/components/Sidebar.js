@@ -66,16 +66,20 @@ export default function Sidebar(){
                                         <span className="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
                                     </a>
                                 </li>
+                              
                                 <li className="nav-item">
                                     <a className="nav-link" href="/collections">
                                         <i className="bi bi-bookmarks" /> Collections
                                     </a>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                {
+                                    userInfor && userInfor.isAdmin &&  <li className="nav-item">
+                                    <a className="nav-link" href="/users">
                                         <i className="bi bi-people" /> Users
                                     </a>
                                 </li>
+                                }
+                               
                             </ul>
                             
                            

@@ -98,7 +98,7 @@ if(password  !== confirmPassword){
                         <form onSubmit={submitHandler}>
                             {error && <div className="alert-danger my-3 p-3">{error}</div>}
                          
-                         <div> <img className="profile-picture mb-4" src={userInfor.image} alt="" /> <br /> <span>BTC :{userInfor.btcwallet}</span> <br /> <span>ETH :{userInfor.ethwallet}</span></div>
+                         <div> <img className="profile-picture mb-4" src={userInfor.image} alt="" /> <br /> <span><strong>BTC :{userInfor.btcwallet}</strong></span> <br /> <span><strong>ETH :{userInfor.ethwallet}</strong></span></div>
 
                             <div className="form-outline mb-2">
                                 <input onChange={uploadImage} type="file" id="form1Example2" className="form-control" accept="image/*" />
