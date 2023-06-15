@@ -8,6 +8,10 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import CollectionsPage from './pages/CollectionsPage';
 import ProfilePage from './components/ProfilePage';
+import UsersPage from './pages/Userspage';
+import UserDetailPage from './pages/UserDetailPage';
+
+
 
 
 
@@ -23,6 +27,8 @@ function App() {
     <Route path="/login" element={<LoginPage/>}></Route>
     <Route path="/collections" element={<CollectionsPage/>}></Route>
     <Route path="/profile" element={<ProfilePage/>}></Route>
+    <Route path="/users" element={<UsersPage/>}></Route>
+    <Route path="/user/:id" element={<UserDetailPage/>}></Route>
   </Routes>
   </BrowserRouter>
 }

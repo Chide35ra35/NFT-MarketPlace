@@ -66,7 +66,9 @@ if(password  !== confirmPassword){
     }
 
     useEffect(() =>{
-        setUsername(userInfor.username)
+        setUsername(userInfor.username);
+        setBtcwallet(userInfor.btcwallet)
+        setEthwallet(userInfor.wallet)
      },[])
     return <>
         <div>
@@ -98,7 +100,7 @@ if(password  !== confirmPassword){
                         <form onSubmit={submitHandler}>
                             {error && <div className="alert-danger my-3 p-3">{error}</div>}
                          
-                         <div> <img className="profile-picture mb-4" src={userInfor.image} alt="" /> <br /> <span><strong>BTC :{userInfor.btcwallet}</strong></span> <br /> <span><strong>ETH :{userInfor.ethwallet}</strong></span></div>
+                         <div> <img className="profile-picture mb-4" src={userInfor.image} alt="" /> </div>
 
                             <div className="form-outline mb-2">
                                 <input onChange={uploadImage} type="file" id="form1Example2" className="form-control" accept="image/*" />

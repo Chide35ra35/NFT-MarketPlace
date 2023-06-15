@@ -211,6 +211,28 @@ app.put("/api/users/:id", async (req,res)=>{
         res.send({error : "Error updating profile"})
     }
 })
+app.get("/api/users", async (req, res) =>{
+    const users = await User.find()
+    res.send (users)
+})
+app.delete("/api/users/:id", async (req, res) => {
+    const id = req.params.id;
+    if (!isValidObjectId(id)) {
+        res.send({ error: "The ID of the product is invalid" });
+        return;
+    }
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (deletedUser) {
+        res.send({ success: "Product Deleted" })
+    } else {
+        res.send({ error: "Error deleting product" })
+    }
+})
+app.get("/api/users/:id", async (req,res)=>{
+    const id = req.params.id;
+    const user = await User.findById(id)
+    res.send(user);
+})
 
 
 
